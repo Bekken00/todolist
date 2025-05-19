@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/style.css">
+    
+</head>
+<body>
+    <main>
+        <div class="login-page">
+            <div class="login-container">
+                <div class="header-container">
+                    <h2>
+                        Login
+                    </h2>
+                </div>
+                <form action="/login/" method="post" class="login-form">
+                    <div class="input-container">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" value="{{ email }}">
+                    </div>
+                    <div class="input-container">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" value="{{ password }}">
+                    </div>
+                    <div class="input-container">
+                        <h6 class="message-email">{{ message_email }}</h6>
+                        <h6 class="message-password">{{ message_password }}</h6>
+                    </div>
+                    <div class="input-container" id="submit-button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

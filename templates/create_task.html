@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Create task</title>
+</head>
+<body>
+    <main>
+        <dev class="create-task-page">
+            <dev class="create-task-container">
+                <div class="header-container">
+                    <h2>
+                        {{ header }}
+                    </h2>
+                </div>
+                <form action="{% if header ==  %}/create_task/{{ id }}" method="post" class="create-task-form">
+                    <div class="input-container">
+                        <label for="task">Task</label>
+                        <input type="text" name="task" id="task" autocomplete="off" value="{{ task_content }}">
+                    </div>
+                    <div class="input-container">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" value="5">
+                            {% for c in categories %}
+                                {% if c == category %}
+                                    <option value="{{ c.id }}" selected>{{ c.category_name }}</option>
+                                {% else %}
+                                    <option value="{{ c.id }}">{{ c.category_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-container" id="submit-button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </dev>
+        </dev>
+    </main>
+</body>
+</html>

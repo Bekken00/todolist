@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/style.css">
+    
+</head>
+<body>
+    <main>
+        <div class="register-page">
+            <div class="register-container">
+                <div class="header-container">
+                    <h2>Register</h2>
+                </div>
+                <form action="/register/" method="post" class="register-form">
+                    <div class="input-container">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" value="{{ name }}">
+                    </div>
+                    <div class="input-container">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" value="{{ email }}"> 
+                    </div>
+                    <div class="input-container">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" value="{{ password }}"> 
+                    </div>
+                    <div class="input-container">
+                        <label for="repeated_password">Repeat password</label>
+                        <input type="password" name="repeated_password" id="repeated_password" value="{{ repeated_password }}"> 
+                    </div>
+                    <div class="input-container">
+                        <h6 class="message-email">{{ message_email }}</h6>
+                        <h6 class="message-password">{{ message_password }}</h6>
+                    </div>
+                    <div class="input-container" id="submit-button">
+                        <input type="submit" value="Submit"> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

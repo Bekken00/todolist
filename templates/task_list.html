@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-list</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://kit.fontawesome.com/681f27e6b6.js" crossorigin="anonymous"></script>
+    <script src="../static/script.js"></script>
+</head>
+<body>
+    <div class="task-list-wrapper">
+        <header>
+            <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-item">
+                        <a href="/create_task/{{ id }}">New task</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="">User</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/login">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="list-container">
+                <table class="task-table">
+                    <tr class="task-row">
+                        <th class="task-header">Task</th>
+                        <th class="task-header">Category</th>
+                        <th class="task-header">Edit</th>
+                        <th class="task-header">Delete</th>
+                    </tr>
+                        {% for item in items %}
+                        <tr class="task-row">
+                            <td class="task-item"><p>{{ item.content }}</p></td>
+                            <td class="task-item"><p>{{ item.category.category_name }}</p></td>
+                            <td class="task-item">
+                                <a href="/edit_task/{{ item.id }}" class="edit-btn">
+                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                </a>
+                            </td>
+                            <td class="task-item">
+                                <form action="/delete_task" method="post">
+                                    <input type="hidden" name="task_id" value="{{ item.id }}">
+                                    <button type="submit" class="delete-btn">
+                                        <i class="fa-solid fa-trash fa-lg"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

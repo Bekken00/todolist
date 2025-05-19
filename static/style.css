@@ -1,0 +1,202 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0px;
+    height: 50px;
+    width: 100%;
+    background-color: #87CEFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-list {
+    display: flex;
+    list-style-type: none;
+}
+
+.navbar-item {
+    margin-inline: 20px;
+}
+
+a {
+    color: #44505e;
+    text-decoration: none;
+}
+
+.welcome-text-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.login-page {
+    height: 100vh;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-task-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    display: block;
+    background-color: #87CEFA;
+    width: 300px;
+    height: 350px;
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 0px 10px;
+    color: 	#44505e;
+}
+
+.register-container {
+    display: block;
+    background-color: #87CEFA;
+    width: 300px;
+    height: 500px;
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 0px 10px;
+    color: 	#44505e;
+}
+
+.create-task-container {
+    display: block;
+    background-color: #87CEFA;
+    width: 500px;
+    height: 300px;
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 0px 10px;
+    color: 	#44505e;
+}
+
+.header-container {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.input-container {
+    margin: 10px 30px;
+    height: 100%;
+}
+
+.input-container label {
+    width: 100%;
+    display: inline-flex;
+    justify-content: left;
+}
+
+.input-container input{
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.input-container input[type=submit] {
+    margin-top: 10px;
+    background-color: white;
+    color: #44505e;
+}
+
+.input-container h6 {
+    color: red;
+}
+
+.input-container select {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    color:#44505e;
+}
+
+.input-container select option {
+    background-color: #bee1ff;
+}
+
+.list-container {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.task-table {
+    width: 60%;
+    margin-top: 20px;
+    color:#44505e;
+}
+
+.task-header {
+    background-color: #87CEFA;
+    color:#44505e;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+.task-row:nth-child(odd) {
+    background-color: #f6f6f6;;
+}
+
+.task-row:nth-child(even) {
+    background-color: #bee1ff;
+}
+
+.task-item p {
+    font-size: 1.2em;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-item form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
