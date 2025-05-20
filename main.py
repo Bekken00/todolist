@@ -6,10 +6,6 @@ from pydantic import BaseModel
 
 import database as db
 
-class Login(BaseModel):
-    email: str
-    password: str
-
 tamplates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
