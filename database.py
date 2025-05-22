@@ -44,9 +44,9 @@ class Task(Base):
     __tablename__ = "tasks"
 
     task_id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"))
     content: Mapped[str] = mapped_column()
-    category_id: Mapped[int] = mapped_column(ForeignKey("category.id"))
+    category_id: Mapped[int] = mapped_column(ForeignKey("category.category_id"))
     status: Mapped[bool] = mapped_column(default=False)
 
     users: Mapped["User"] = relationship("User", back_populates="tasks")
@@ -263,7 +263,7 @@ def get_tasks_with_category(user_id: int):
     get_tasks(user_id)
 
 def make_tasks():
-    tasks = ["do the home worл", "make a project", "find the keys", "go to work", "write the letter"]
+    tasks = ["do the home work", "make a project", "find the keys", "go to work", "write the letter"]
 
     for task in tasks:
         create_task(1, task, random.randint(1, 5))
