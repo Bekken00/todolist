@@ -39,13 +39,13 @@
                             <td class="task-item"><p>{{ item.content }}</p></td>
                             <td class="task-item"><p>{{ item.category.category_name }}</p></td>
                             <td class="task-item">
-                                <a href="/edit_task/{{ item.id }}" class="edit-btn">
+                                <a href="/edit_task/{{ item.task_id }}" class="edit-btn">
                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                 </a>
                             </td>
                             <td class="task-item">
                                 <form action="/delete_task" method="post">
-                                    <input type="hidden" name="task_id" value="{{ item.id }}">
+                                    <input type="hidden" name="task_id" value="{{ item.task_id }}">
                                     <button type="submit" class="delete-btn">
                                         <i class="fa-solid fa-trash fa-lg"></i>
                                     </button>

@@ -15,19 +15,19 @@
                         {{ header }}
                     </h2>
                 </div>
-                <form action="{% if header ==  %}/create_task/{{ id }}" method="post" class="create-task-form">
+                <form action="{% if edit == False %} /create_task/{{ user_id }} {% elif edit == True %} /edit_task/{{ task_id }} {% endif %}" method="post" class="create-task-form">
                     <div class="input-container">
                         <label for="task">Task</label>
-                        <input type="text" name="task" id="task" autocomplete="off" value="{{ task_content }}">
+                        <input type="text" name="task" id="task" autocomplete="off" value="{{ content }}">
                     </div>
                     <div class="input-container">
                         <label for="category">Category</label>
-                        <select name="category" id="category" value="5">
+                        <select name="category" id="category">
                             {% for c in categories %}
-                                {% if c == category %}
-                                    <option value="{{ c.id }}" selected>{{ c.category_name }}</option>
+                                {% if c.category_id == category %}
+                                    <option value="{{ c.category_id }}" selected>{{ c.category_name }}</option>
                                 {% else %}
-                                    <option value="{{ c.id }}">{{ c.category_name }}</option>
+                                    <option value="{{ c.category_id }}">{{ c.category_name }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>

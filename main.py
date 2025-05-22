@@ -48,7 +48,7 @@ def get_login(
 
     if db_object != None:
         if db_object.password == password:
-            return RedirectResponse(url=f"/task_list/{db_object.id}", status_code=303)
+            return RedirectResponse(url=f"/task_list/{db_object.user_id}", status_code=303)
         else:
             message_password = "wrong password"
     else:
@@ -132,10 +132,10 @@ def get_tasks(
             }
     )
 
-@app.get("/create_task/{id}")
+@app.get("/create_task/{user_id}")
 def create_task(
     request: Request,
-    id: int
+    user_id: int
     ):
     categories = db.get_categories()
     return tamplates.TemplateResponse(
@@ -143,7 +143,7 @@ def create_task(
         name = "create_task.html",
         # Add context header to frontend automaticaly change the header text
         context = {
-            "id": id,
+            "user_id": user_id,
             "content": " ",
             "category": " ",
             "categories": categories,
@@ -153,20 +153,20 @@ def create_task(
         )
 
 
-@app.post("/create_task/{id}")
+@app.post("/create_task/{user_id}")
 def get_create_task(
-    id: int,
+    user_id: int,
     task: str = Form(),
     category: int = Form()
     ):
     
-    db_object = db.get_user(id)
+    db_object = db.get_user(user_id)
 
     if db_object != None:
-        db.create_task(id, content=task, category=category)
-        return RedirectResponse(url=f"/task_list/{id}", status_code=303)
+        db.create_task(user_id, content=task, category_id=category)
+        return RedirectResponse(url=f"/task_list/{user_id}", status_code=303)
     else:
-        return {"message": "something get wrong"}
+        return {"message": "user not found"}
     
 @app.post("/delete_task")
 def delete_task(task_id: int = Form()):
@@ -180,22 +180,36 @@ def delete_task(task_id: int = Form()):
         return {"message": "task has not deleted"}
     
 # Add endpoint edit to eding task
-@app.get("/edit_task/{id}")
+@app.get("/edit_task/{task_id}")
 def edit_task(
     request: Request,
-    id: int
+    task_id: int
     ):
     categories = db.get_categories()
+    task = db.get_task(task_id=task_id)
     return tamplates.TemplateResponse(
         request=request,
         name = "create_task.html",
         # Add context header to frontend automaticaly change the header text
         context = {
-            "id": id,
-            "content": " ",
-            "category": " ",
+            "task_id": task_id,
+            "content": task.content,
+            "category": task.category_id,
             "categories": categories,
-            "header": "Create Task",
-            "edit": False
+            "header": "Edit task",
+            "edit": True
             }
         )
+
+@app.post("/edit_task/{task_id}")
+def get_edit_task(
+    task_id: int,
+    task: str = Form(),
+    category: int = Form()
+    ):
+    db_object = db.get_task(task_id = task_id)
+    if db_object != None:
+        db.edit_task(task_id = task_id, content = task, category_id = category)
+        return RedirectResponse(url=f"/task_list/{db.get_user_by_task(task_id)}", status_code=303)
+    else:
+        return {"message": "task has not found"}

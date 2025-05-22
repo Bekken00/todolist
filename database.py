@@ -135,6 +135,11 @@ def get_task(task_id: int):
 
     return db_object
 
+def get_user_by_task(task_id: int):
+    task = get_task(task_id)
+    user_id = task.user_id
+
+    return user_id
 
 def get_tasks(user_id: int):
     stmt = select(Task).where(Task.user_id == user_id)
