@@ -12,8 +12,6 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-number: int = "hello" 
-
 @app.get("/")
 def root(request: Request):
     return tamplates.TemplateResponse(
@@ -101,7 +99,6 @@ def get_register(
     else:
         message_email = "Wrong email"
 
-
     return tamplates.TemplateResponse(
         request = request,
         name = "register.html",
@@ -141,7 +138,6 @@ def create_task(
     return tamplates.TemplateResponse(
         request=request,
         name = "create_task.html",
-        # Add context header to frontend automaticaly change the header text
         context = {
             "user_id": user_id,
             "content": " ",
@@ -179,7 +175,6 @@ def delete_task(task_id: int = Form()):
     else:
         return {"message": "task has not deleted"}
     
-# Add endpoint edit to eding task
 @app.get("/edit_task/{task_id}")
 def edit_task(
     request: Request,
@@ -190,7 +185,6 @@ def edit_task(
     return tamplates.TemplateResponse(
         request=request,
         name = "create_task.html",
-        # Add context header to frontend automaticaly change the header text
         context = {
             "task_id": task_id,
             "content": task.content,
