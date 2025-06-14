@@ -18,6 +18,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from passlib.context import CryptContext
 from pydantic import BaseModel
 
 fake_users_db = {
@@ -57,11 +58,28 @@ class User(BaseModel):
 class UserInDB(User):
     hashed_password: str
 
+pwd_context = CryptContext(schemes=["brypt"], deprecated="auto")
 
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def get_password_hash(password: str) -> str:
+    return pwd_context.hash(password)
+
+
+def authenticate_user(fake_db, username: str, password: str):
+    user = get_user(fake_db, username)
+    if not user:
+        return False
+    if not verify_password(password):
+        return False
+    return user
 
 
 def fake_decode_token(token):
