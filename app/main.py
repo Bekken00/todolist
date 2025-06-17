@@ -41,6 +41,8 @@ fake_users_db = {
 app = FastAPI()
 
 
+SECRET_KEY = "5a67c6b8b47c897d0b59b745b6d00a4f8bed38b15871d20ae99b17d3594b99fa"
+
 def fake_hash_password(password: str):
     return "fakehashed" + password
 
